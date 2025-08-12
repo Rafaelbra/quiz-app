@@ -1,4 +1,4 @@
-const Results = ({userAnswers, questionBank}) => {
+const Results = ({userAnswers, questionBank, restartQuiz}) => {
 
     function getScore() {
         let finalScore = 0;
@@ -18,9 +18,9 @@ const Results = ({userAnswers, questionBank}) => {
     <div>
         <h2>Quiz Completed!</h2>
         <p>Your score: {score}/{questionBank.length}</p>
-        <button className="restart-button">Restart Quiz</button>
+        <button className="restart-button" onClick={restartQuiz}>Restart Quiz</button>
     </div>
-  )
+  );
 }
 
 export default Results
