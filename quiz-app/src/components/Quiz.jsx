@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Results from "./Results";
 
 const Quiz = () => {
     const questionBank = [
@@ -30,6 +31,8 @@ const Quiz = () => {
 
     const [userAnswers, setUserAnswers] = useState(initialAnswers);
 
+    const [isQuizFinished, setIsQuizFinished] = useState(false)
+
     const selectedAnswer = userAnswers[currentQuestion];
 
     function handleSelectedOption(option) {
@@ -40,11 +43,19 @@ const Quiz = () => {
     }
 
     function goToNext() {
-        currentQuestion < 2 &&setCurrentQuestion(currentQuestion + 1);
+        if (currentQuestion === questionBank.length -1) {
+            setIsQuizFinished(true);
+        } else {
+            setCurrentQuestion(currentQuestion+1);
+        }
     }
 
     function goToPrevious() {
         currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1);
+    }
+
+    if (isQuizFinished) {
+        return <Results userAnswers={userAnswers} questionBank={questionBank} />
     }
 
   return (
